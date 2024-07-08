@@ -1,6 +1,8 @@
 package com.bourke;
 
-public class Note {
+import java.io.Serializable;
+
+public class Note implements Serializable{
     public String name;
     public String data;
 }
