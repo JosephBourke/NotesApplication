@@ -1,15 +1,41 @@
 package com.bourke;
 
-import javafx.fxml.*;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class NoteEditor {
+import javafx.fxml.*;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+
+public class NoteEditor implements Initializable {
     
 
     private Note currentNote;
 
+    @FXML
+    TextArea body;
 
-    public NoteEditor(Note note){
+    @FXML 
+    TextField title;
 
+
+    // public NoteEditor(Note note){
+    //     currentNote = note;
+    // }
+
+
+
+    // @FXML
+    // void save(){
+    //     currentNote.data = body.getText();
+    //     currentNote.name = title.getText();
+    // }
+
+
+
+    @Override
+    public void initialize(URL arg0, ResourceBundle arg1) {
+        
     }
 
 
