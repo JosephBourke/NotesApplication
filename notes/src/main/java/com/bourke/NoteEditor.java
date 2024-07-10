@@ -19,25 +19,40 @@ public class NoteEditor implements Initializable {
     TextField title;
 
 
-    // public NoteEditor(Note note){
-    //     currentNote = note;
-    // }
+    public NoteEditor(Note note){
+        currentNote = note;
+    }
+
+    public NoteEditor(){
+        currentNote = new Note();
+        currentNote.name = "title";
+        currentNote.data = "";
+    }
+
+    @FXML
+    void save(){
+        currentNote.data = body.getText();
+        currentNote.name = title.getText();
+    }
 
 
 
-    // @FXML
-    // void save(){
-    //     currentNote.data = body.getText();
-    //     currentNote.name = title.getText();
-    // }
 
 
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-        
+        body.setText(currentNote.data);
+        title.setText(currentNote.name);
     }
 
+
+
+    public void setNote(Note n){
+        currentNote = n;
+        body.setText(currentNote.data);
+        title.setText(currentNote.name);
+    }
 
 
 }
