@@ -2,6 +2,8 @@ package com.bourke;
 
 import javafx.fxml.FXMLLoader;
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class FileHandler {
 
@@ -17,8 +19,6 @@ public class FileHandler {
 
             out.writeObject(object);
 
-            out.close();
-            file.close();
 
             System.out.println("File Saved");
         } catch (Exception e) {
@@ -39,15 +39,21 @@ public class FileHandler {
         FileInputStream file = null;
         ObjectInputStream in = null;
         try {
+
+
             file = new FileInputStream(location);
             in = new ObjectInputStream(file);
 
             obj = in.readObject();
 
-            in.close();
-            file.close();
+    
+
+            return obj;
+        
+
         } catch (Exception e) {
             e.printStackTrace();
+            return obj;
         }finally{
             try {
                 in.close();
@@ -57,7 +63,7 @@ public class FileHandler {
             }
         }
 
-        return obj;
+    
 
     }
 

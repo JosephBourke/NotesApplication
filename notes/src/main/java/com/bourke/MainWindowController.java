@@ -4,6 +4,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -22,32 +24,43 @@ public class MainWindowController implements Initializable {
 
 
     
-    private static ArrayList<Note> list = null;
-
+    private  ArrayList<Note> list = null;
+    private  FileHandler fh = new FileHandler();
 
 
     @SuppressWarnings("unchecked")
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-      
-
-        lv.getItems().add("1");
-        lv.getItems().add("2");
-        lv.getItems().add("3");
-        lv.getItems().add("4");
-        lv.getItems().add("5");
+        FileHandler fh = new FileHandler();
+        if((list = (ArrayList<Note>)fh.LoadObject(Constants.SAVE_LOCATION)) == null){
+            list = new ArrayList<>();
+        }
+        lv.setItems(FXCollections.observableArrayList(list));
     }
 
-    public static void addNote(Note n){
+    public  void addNote(Note n){
         list.add(n);
+        fh.SaveObject(list, Constants.SAVE_LOCATION);
+        lv.setItems(FXCollections.observableArrayList(list));
+        
     }
 
-    public static void addNote(int index, Note n){
+    public  void addNote(int index, Note n){
         list.add(index,n);
+        fh.SaveObject(list, Constants.SAVE_LOCATION);
+        lv.setItems(FXCollections.observableArrayList(list));
     }
 
-    public static void removeNote(int index){
+    public  void setNote(int index, Note n){
+        list.set(index,n);
+        fh.SaveObject(list, Constants.SAVE_LOCATION);
+        lv.setItems(FXCollections.observableArrayList(list));
+    }
+
+    public  void removeNote(int index){
         list.remove(index);
+        fh.SaveObject(list, Constants.SAVE_LOCATION);
+        lv.setItems(FXCollections.observableArrayList(list));
     }
 
 
@@ -58,11 +71,22 @@ public class MainWindowController implements Initializable {
 
         
         try {
+            Note n = (Note)lv.getSelectionModel().getSelectedItem();
+
+
             Stage stage = new Stage();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("notewindow.fxml"));
             Parent pane = (Parent)loader.load();
             NoteEditor ne = loader.getController();
-            ne.setNote(new Note(lv.getSelectionModel().getSelectedItem().toString(), "null"));
+            ne.setMainWindow(this);
+            if(n != null){
+                ne.setNote(lv.getSelectionModel().getSelectedIndex(),(Note)lv.getSelectionModel().getSelectedItem());
+            }else{
+                n = new Note("title","");
+                addNote(n);
+                ne.setNote(list.size(), n);
+            }
+
 
             
             

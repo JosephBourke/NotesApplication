@@ -12,6 +12,8 @@ public class NoteEditor implements Initializable {
 
     private Note note;
     private int index;
+
+    private MainWindowController main = null;
     @FXML
     TextArea body;
 
@@ -42,10 +44,13 @@ public class NoteEditor implements Initializable {
     void save(){
         note.data = body.getText();
         note.name = title.getText();
+        main.setNote(index, note);
     }
 
 
-
+    public void setMainWindow(MainWindowController main){
+        this.main = main;
+    }
 
 
 
@@ -57,7 +62,8 @@ public class NoteEditor implements Initializable {
 
 
 
-    public void setNote(Note n){
+    public void setNote(int index, Note n){
+        this.index = index;
         note = n;
         body.setText(note.data);
         title.setText(note.name);
