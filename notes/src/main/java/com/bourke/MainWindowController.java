@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
@@ -59,14 +60,16 @@ public class MainWindowController implements Initializable {
         try {
             Stage stage = new Stage();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("notewindow.fxml"));
-            
-            Scene scene = new Scene(loader.load());
-            
+            Parent pane = (Parent)loader.load();
             NoteEditor ne = loader.getController();
+            ne.setNote(new Note(lv.getSelectionModel().getSelectedItem().toString(), "null"));
+
+            
+            
             
 
             
-            stage.setScene(scene);
+            stage.setScene(new Scene(pane));
             stage.setTitle("Note Editor");
             stage.show();
 

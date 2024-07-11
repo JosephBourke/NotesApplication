@@ -16,5 +16,10 @@ public class Note implements Serializable{
         this.data = data;
     }
 
-    
+
+
+    public String toString(){
+        return name;
+    }
+
 }

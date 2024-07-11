@@ -10,8 +10,8 @@ import javafx.scene.control.TextField;
 public class NoteEditor implements Initializable {
     
 
-    private Note currentNote;
-
+    private Note note;
+    private int index;
     @FXML
     TextArea body;
 
@@ -20,19 +20,28 @@ public class NoteEditor implements Initializable {
 
 
     public NoteEditor(Note note){
-        currentNote = note;
+        this.note = note;
+    }
+
+    public NoteEditor(int index){
+        this.index = index;
+    }
+
+    public NoteEditor(int index, Note note){
+        this.index = index;
+        this.note = note;
     }
 
     public NoteEditor(){
-        currentNote = new Note();
-        currentNote.name = "title";
-        currentNote.data = "";
+        note = new Note();
+        note.name = "title";
+        note.data = "";
     }
 
     @FXML
     void save(){
-        currentNote.data = body.getText();
-        currentNote.name = title.getText();
+        note.data = body.getText();
+        note.name = title.getText();
     }
 
 
@@ -42,16 +51,16 @@ public class NoteEditor implements Initializable {
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-        body.setText(currentNote.data);
-        title.setText(currentNote.name);
+        body.setText(note.data);
+        title.setText(note.name);
     }
 
 
 
     public void setNote(Note n){
-        currentNote = n;
-        body.setText(currentNote.data);
-        title.setText(currentNote.name);
+        note = n;
+        body.setText(note.data);
+        title.setText(note.name);
     }
 
 
