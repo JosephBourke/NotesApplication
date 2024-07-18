@@ -32,16 +32,38 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.bourke.MainWindowController">
   <children>
-    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+      <FlowPane prefHeight="200.0" prefWidth="200.0">
          <children>
-            <ListView fx:id="lv" layoutY="-1.0" onMouseReleased="#listViewSelected" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <MenuBar prefHeight="25.0" prefWidth="640.0">
+              <menus>
+                <Menu mnemonicParsing="false" text="File">
+                  <items>
+                        <MenuItem mnemonicParsing="false" text="Open" />
+                        <MenuItem mnemonicParsing="false" text="New" />
+                        <MenuItem mnemonicParsing="false" text="Save" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+            <ToolBar prefHeight="40.0" prefWidth="640.0">
+              <items>
+                <Button mnemonicParsing="false" text="New Note" />
+                  <Button layoutX="10.0" layoutY="13.0" mnemonicParsing="false" text="Delete Note" />
+              </items>
+            </ToolBar>
+            <ListView fx:id="lv" onMouseReleased="#listViewSelected" prefHeight="334.0" prefWidth="640.0" />
          </children>
-    </AnchorPane>
+      </FlowPane>
   </children>
 </VBox>
