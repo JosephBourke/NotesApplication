@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -85,7 +84,6 @@ public class MainWindowController implements Initializable {
     @FXML
     public void openNewNote(){
         System.out.println("New Note!");
-          
         try {
             Note n;
             n = new Note("title","");
@@ -105,8 +103,8 @@ public class MainWindowController implements Initializable {
             stage.show();
 
         }
-        catch (Exception e) {
-            e.printStackTrace();
+            catch (Exception e) {
+                e.printStackTrace();
         }
         
         System.out.println(lv.getSelectionModel().getSelectedItem());
@@ -133,7 +131,6 @@ public class MainWindowController implements Initializable {
                 ne.setNote(lv.getSelectionModel().getSelectedIndex(),(Note)lv.getSelectionModel().getSelectedItem());
             }else{
                 n = new Note("title","");
-                list.add(n);
                 addNote(n);
                 fh.SaveObject(list, Constants.SAVE_LOCATION);
                 ne.setNote(list.size() - 1, n);
