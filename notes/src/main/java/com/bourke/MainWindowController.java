@@ -36,7 +36,7 @@ public class MainWindowController implements Initializable {
         }
         lv.setItems(FXCollections.observableArrayList(list));
     }
-
+    @SuppressWarnings("unchecked")
     @FXML
     public void addNote(){
         Note n = new Note("New Note", "null");
@@ -46,7 +46,7 @@ public class MainWindowController implements Initializable {
     }
 
 
-
+    @SuppressWarnings("unchecked")
     public  void addNote(Note n){
         list.add(n);
         fh.SaveObject(list, Constants.SAVE_LOCATION);
@@ -55,7 +55,7 @@ public class MainWindowController implements Initializable {
     }
 
 
-
+    @SuppressWarnings("unchecked")
     public  void addNote(int index, Note n){
         list.add(index,n);
         fh.SaveObject(list, Constants.SAVE_LOCATION);
@@ -63,13 +63,14 @@ public class MainWindowController implements Initializable {
     }
 
 
-
+    @SuppressWarnings("unchecked")
     public  void setNote(int index, Note n){
         list.set(index,n);
         fh.SaveObject(list, Constants.SAVE_LOCATION);
         lv.setItems(FXCollections.observableArrayList(list));
     }
 
+    @SuppressWarnings("unchecked")
     public  void removeNote(int index){
         list.remove(index);
         fh.SaveObject(list, Constants.SAVE_LOCATION);
